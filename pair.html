@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pair Code</title>
+  <title>Pair Code with Starfield Background</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     body {
@@ -12,97 +12,36 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-color: #000;
       overflow: hidden;
       font-family: Arial, sans-serif;
     }
-
-    .rain {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      overflow: hidden;
-      z-index: -1;
-    }
-
-    .drop {
-      position: absolute;
-      bottom: 100%;
-      width: 2px;
-      height: 15px;
-      background: rgba(255, 255, 255, 0.3);
-      animation: fall 0.5s linear infinite;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-      }
-    }
-
-    .lightning {
+    #starfieldCanvas {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
-      pointer-events: none;
     }
-
-    .flash {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.8);
-      opacity: 0;
-      z-index: -1;
-      animation: flash 0s linear infinite;
-    }
-
-    @keyframes flash {
-      0%, 100% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
-
     .container {
       display: flex;
       flex-direction: column;
       align-items: center;
       z-index: 1;
     }
-
     .box {
       width: 300px;
       height: 320px;
       padding: 20px;
-      position: relative;
       text-align: center;
       background-color: #111;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(250, 249, 249, 0.7);
-      position: relative;
     }
-
     #text {
       color: #f6f5f5;
     }
-
-    .input-container input {
-      color: #333;
-    }
-
-    .centered-text {
-      color: #fff;
-    }
-
     .input-container {
       display: flex;
       background: #444;
@@ -112,100 +51,50 @@
       max-width: 300px;
       width: 100%;
     }
-
     .input-container input {
       border-radius: 0.8rem 0 0 0.8rem;
       background: #fff;
-      box-shadow: inset 13px 13px 10px #dcdcdc, inset -13px -13px 10px #f4f4f4;
       width: 100%;
-      flex-basis: 75%;
       padding: 1rem;
       border: none;
-      border-left: 2px solid #ecf2f8;
       color: #000;
-      transition: all 0.2s ease-in-out;
     }
-
-    .input-container input:focus {
-      border-left: 2px solid #ecf1f6;
-      outline: none;
-      box-shadow: inset 13px 13px 10px #f0f2f3, inset -13px -13px 10px #f4f4f4;
-    }
-
     .input-container button {
-      flex-basis: 15%;
       padding: 1rem;
       background: #ff6347;
       font-weight: 700;
-      letter-spacing: 0.3rem;
-      text-transform: uppercase;
       color: white;
-      border: 2px solid #ff4500;
-      width: 90%;
+      border: none;
       border-radius: 0 1rem 1rem 0;
-      transition: all 0.2s ease-in-out;
+      cursor: pointer;
     }
-
     .input-container button:hover {
       background-color: #ff4500;
-      border-color: #ff6347;
     }
-
+    .centered-text {
+      color: #fff;
+      text-align: center;
+    }
     @media (max-width: 500px) {
+      .box {
+        width: 90%;
+      }
       .input-container {
         flex-direction: column;
       }
-
       .input-container input {
         border-radius: 0.8rem;
+        width: 100%;
       }
-
       .input-container button {
         padding: 0.4rem;
         border-radius: 0.8rem;
       }
     }
-
-    .centered-text {
-      text-align: center;
-    }
-
-    @media (max-width: 500px) {
-      .box {
-        width: 90%; 
-      }
-    }
-
-    @media (max-width: 500px) {
-      .input-container input {
-        border-radius: 0.8rem;
-        width: 80%; 
-      }
-
-      .input-container button {
-        padding: 1rem;
-        border-radius: 0.9rem;
-        width: 100%; 
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="rain">
-    <div class="drop" style="left: 10%; animation-delay: 0s;"></div>
-    <div class="drop" style="left: 20%; animation-delay: 0.2s;"></div>
-    <div class="drop" style="left: 30%; animation-delay: 0.4s;"></div>
-    <div class="drop" style="left: 40%; animation-delay: 0.6s;"></div>
-    <div class="drop" style="left: 50%; animation-delay: 0.8s;"></div>
-    <div class="drop" style="left: 60%; animation-delay: 1s;"></div>
-    <div class="drop" style="left: 70%; animation-delay: 1.2s;"></div>
-    <div class="drop" style="left: 80%; animation-delay: 1.4s;"></div>
-    <div class="drop" style="left: 90%; animation-delay: 1.6s;"></div>
-  </div>
-  <div class="lightning">
-    <div class="flash" style="animation: flash 2s linear infinite; animation-delay: 5s;"></div>
-    <div class="flash" style="animation: flash 2s linear infinite; animation-delay: 10s;"></div>
-  </div>
+  <canvas id="starfieldCanvas"></canvas>
   <div class="container">
     <div class="main">
       <div class="box" id="box">
@@ -217,7 +106,7 @@
             <h6>Made By David Cyril⚡.</h6>
             <h6>Enter Your Number with Country Code.</h6>
             <div class="input-container">
-              <input placeholder="234906652xxx" type="number" id="number" name="">
+              <input placeholder="923192173xxx" type="number" id="number" name="">
               <button id="submit">Submit</button>
             </div>
             
@@ -230,7 +119,6 @@
       </div>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
     let a = document.getElementById("pair");
     let b = document.getElementById("submit");
@@ -258,4 +146,77 @@
       } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
         a.innerHTML = '<a style="color:red;font-weight:bold">Invalid Number</a><br><br>';
       } else {
-        const Wasi_Tech = c.value.replace(/[^0
+        const Wasi_Tech = c.value.replace(/[^0-9]/g, "");
+        a.innerHTML = '<a style="color:white;font-weight:bold">Generating your code...</a><br><br>';
+        try {
+          const response = await axios.post('https://your-api-endpoint', { number: Wasi_Tech });
+          if (response.data && response.data.code) {
+            a.innerHTML = `<a id="copy" onclick="Copy()" style="color:white; cursor: pointer;">CODE: ${response.data.code}</a>`;
+          } else {
+            a.innerHTML = '<a style="color:red;font-weight:bold">Failed to generate code. Try again.</a><br><br>';
+          }
+        } catch (error) {
+          a.innerHTML = '<a style="color:red;font-weight:bold">An error occurred. Try again.</a><br><br>';
+        }
+      }
+    });
+
+    // Starfield effect
+    const canvas = document.getElementById("starfieldCanvas");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+    let numStars = 1000;
+    let starSpeed = 2;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    function initStars() {
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          z: Math.random() * canvas.width,
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      for (let star of stars) {
+        let k = 128.0 / star.z;
+        let px = star.x * k + canvas.width / 2;
+        let py = star.y * k + canvas.height / 2;
+        if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
+          let size = (1 - star.z / canvas.width) * 2;
+          ctx.fillRect(px, py, size, size);
+        }
+      }
+    }
+
+    function moveStars() {
+      for (let star of stars) {
+        star.z -= starSpeed;
+        if (star.z <= 0) {
+          star.z = canvas.width;
+        }
+      }
+    }
+
+    function animate() {
+      moveStars();
+      drawStars();
+      requestAnimationFrame(animate);
+    }
+
+    initStars();
+    animate();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
