@@ -12,17 +12,18 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background: linear-gradient(135deg, #000000, #434343);
+      background: linear-gradient(135deg, #800080, #FFFF00);
       overflow: hidden;
       font-family: Arial, sans-serif;
+      position: relative;
     }
 
-    .lightning, .snow {
+    .lightning {
       position: absolute;
-      width: 100%;
-      height: 100%;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
       z-index: -1;
       pointer-events: none;
     }
@@ -44,6 +45,16 @@
       50% { opacity: 1; }
     }
 
+    .snow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
     .snow:before {
       content: '';
       position: absolute;
@@ -51,8 +62,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://cdn.pixabay.com/photo/2016/03/09/15/03/snow-1246219_1280.png') repeat;
-      animation: snow 10s linear infinite;
+      background: url('https://www.transparenttextures.com/patterns/snow.png') repeat;
+      animation: snow 20s linear infinite;
     }
 
     @keyframes snow {
@@ -60,38 +71,10 @@
       100% { background-position: 1000px 1000px; }
     }
 
-    .rain {
-      position: absolute;
-      width: 1px;
-      height: 100%;
-      background: transparent;
-      overflow: hidden;
-      z-index: -1;
-    }
-
-    .rain:before {
-      content: '';
-      position: absolute;
-      top: -100%;
-      left: 50%;
-      width: 2px;
-      height: 30%;
-      background: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-      animation: rain 0.5s linear infinite;
-    }
-
-    @keyframes rain {
-      to {
-        transform: translateY(100vh);
-      }
-    }
-
     .container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      z-index: 1;
     }
 
     .box {
@@ -104,7 +87,6 @@
       border-radius: 10px;
       transform: perspective(1000px) rotateY(0deg);
       box-shadow: 0 0 20px rgba(250, 249, 249, 0.7);
-      position: relative;
     }
 
     #text {
@@ -153,20 +135,19 @@
     .input-container button {
       flex-basis: 15%;
       padding: 1rem;
-      background: #007bff;
+      background: #5935ac;
       font-weight: 700;
       letter-spacing: 0.3rem;
       text-transform: uppercase;
       color: white;
-      border: 2px solid #007bff;
+      border: none;
       width: 90%;
       border-radius: 0 1rem 1rem 0;
       transition: all 0.2s ease-in-out;
     }
 
     .input-container button:hover {
-      background-color: #0056b3;
-      border-color: #0056b3;
+      background: linear-gradient(135deg, #c01736 0%, #8b17b6 100%);
     }
 
     @media (max-width: 500px) {
@@ -211,19 +192,18 @@
 <body>
   <div class="lightning"></div>
   <div class="snow"></div>
-  <div class="rain"></div>
   <div class="container">
     <div class="main">
       <div class="box" id="box">
         <div id="text">
           <i class="fa fa-user"></i>
           <p>
-            <h3 class="centered-text">ANITA-V2 PAIRING CODE</h3>
+            <h3 class="centered-text">UCHIHA PAIRING CODE</h3>
             <br>
             <h6>Made By David Cyril⚡.</h6>
             <h6>Enter Your Number with Country Code.</h6>
             <div class="input-container">
-              <input placeholder="234906652xxx" type="number" id="number" placeholder="Enter your Phone Number with Country Code" name="">
+              <input placeholder="923192173xxx" type="number" id="number" placeholder="Enter your Phone Pumber with Cuntry Code" name="">
               <button id="submit">Submit</button>
             </div>
             
@@ -269,5 +249,25 @@
         let bbc = "";
         const cc = Wasi_Tech.split('');
         cc.map(a => {
-          bbc
+          bbc += a;
+          if (bbc.length == 3) {
+            bb += " " + a;
+          } else if (bbc.length == 8) {
+            bb += " " + a;
+          } else {
+            bb += a;
+          }
+        });
+        c.type = "text";
+        c.value = "+" + bb;
+        c.style = "color:black;font-size:20px";
+        a.innerHTML = '<a style="color:white;font-weight:bold">Please Wait...</a><br><br>';
+        let { data } = await axios(`/code?number=${Wasi_Tech}`);
+        let code = data.code || "Service Unavailable";
+        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:red;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br><br>';
+      }
+    });
+  </script>
+</body>
+</html>
  
