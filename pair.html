@@ -17,6 +17,49 @@
       font-family: Arial, sans-serif;
     }
 
+    .lightning, .snow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .lightning:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      animation: lightning 0.5s linear infinite;
+    }
+
+    @keyframes lightning {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    .snow:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://cdn.pixabay.com/photo/2016/03/09/15/03/snow-1246219_1280.png') repeat;
+      animation: snow 10s linear infinite;
+    }
+
+    @keyframes snow {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
+    }
+
     .rain {
       position: absolute;
       width: 1px;
@@ -110,20 +153,20 @@
     .input-container button {
       flex-basis: 15%;
       padding: 1rem;
-      background: #000000;
+      background: #007bff;
       font-weight: 700;
       letter-spacing: 0.3rem;
       text-transform: uppercase;
       color: white;
-      border: 2px solid red;
+      border: 2px solid #007bff;
       width: 90%;
       border-radius: 0 1rem 1rem 0;
       transition: all 0.2s ease-in-out;
     }
 
     .input-container button:hover {
-      background-color: red;
-      border-color: green;
+      background-color: #0056b3;
+      border-color: #0056b3;
     }
 
     @media (max-width: 500px) {
@@ -166,6 +209,8 @@
   </style>
 </head>
 <body>
+  <div class="lightning"></div>
+  <div class="snow"></div>
   <div class="rain"></div>
   <div class="container">
     <div class="main">
@@ -178,7 +223,7 @@
             <h6>Made By David Cyril⚡.</h6>
             <h6>Enter Your Number with Country Code.</h6>
             <div class="input-container">
-              <input placeholder="234906652xxx" type="number" id="number" placeholder="Enter your Phone Pumber with Cuntry Code" name="">
+              <input placeholder="234906652xxx" type="number" id="number" placeholder="Enter your Phone Number with Country Code" name="">
               <button id="submit">Submit</button>
             </div>
             
@@ -224,37 +269,4 @@
         let bbc = "";
         const cc = Wasi_Tech.split('');
         cc.map(a => {
-          bbc += a;
-          if (bbc.length == 3) {
-            bb += " " + a;
-          } else if (bbc.length == 8) {
-            bb += " " + a;
-          } else {
-            bb += a;
-          }
-        });
-        c.type = "text";
-        c.value = "+" + bb;
-        c.style = "color:black;font-size:20px";
-        a.innerHTML = '<a style="color:white;font-weight:bold">Please Wait...</a><br><br>';
-        let { data } = await axios(`/code?number=${Wasi_Tech}`);
-        let code = data.code || "Service Unavailable";
-        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:red;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br><br>';
-      }
-    });
-
-    function createRain() {
-      const rain = document.querySelector('.rain');
-      for (let i = 0; i < 100; i++) {
-        const drop = document.createElement('div');
-        drop.style.left = `${Math.random() * 100}vw`;
-        drop.style.animationDelay = `${Math.random() * 2}s`;
-        rain.appendChild(drop);
-      }
-    }
-
-    createRain();
-  </script>
-</body>
-</html>
- 
+          bbc
