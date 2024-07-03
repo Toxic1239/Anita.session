@@ -12,63 +12,8 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background: linear-gradient(135deg, #800080, #FFFF00);
-      overflow: hidden;
+      background: black;
       font-family: Arial, sans-serif;
-      position: relative;
-    }
-
-    .lightning {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .lightning:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 2px;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-      animation: lightning 0.5s linear infinite;
-    }
-
-    @keyframes lightning {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 1; }
-    }
-
-    .snow {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .snow:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/snow.png') repeat;
-      animation: snow 20s linear infinite;
-    }
-
-    @keyframes snow {
-      0% { background-position: 0 0; }
-      100% { background-position: 1000px 1000px; }
     }
 
     .container {
@@ -87,6 +32,7 @@
       border-radius: 10px;
       transform: perspective(1000px) rotateY(0deg);
       box-shadow: 0 0 20px rgba(250, 249, 249, 0.7);
+      position: relative;
     }
 
     #text {
@@ -190,20 +136,18 @@
   </style>
 </head>
 <body>
-  <div class="lightning"></div>
-  <div class="snow"></div>
   <div class="container">
     <div class="main">
       <div class="box" id="box">
         <div id="text">
           <i class="fa fa-user"></i>
           <p>
-            <h3 class="centered-text">UCHIHA PAIRING CODE</h3>
+            <h3 class="centered-text">ANITA-V2 PAIRING CODE</h3>
             <br>
             <h6>Made By David Cyril⚡.</h6>
             <h6>Enter Your Number with Country Code.</h6>
             <div class="input-container">
-              <input placeholder="923192173xxx" type="number" id="number" placeholder="Enter your Phone Pumber with Cuntry Code" name="">
+              <input placeholder="234906652xxx" type="number" id="number" placeholder="Enter your Phone Pumber with Cuntry Code" name="">
               <button id="submit">Submit</button>
             </div>
             
@@ -270,4 +214,3 @@
   </script>
 </body>
 </html>
- 
